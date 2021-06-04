@@ -1,0 +1,23 @@
+{
+  "name": "picoyplaca",
+  "version": "1.0.0",
+  "description": "",
+  "main": "core.js",
+  "scripts": {
+    "test": "jest --watchAll --verbose"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ismalf/HNCPredictor.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ismalf/HNCPredictor/issues"
+  },
+  "homepage": "https://github.com/Ismalf/HNCPredictor#readme",
+  "dependencies": {
+    "@types/jest": "^26.0.23",
+    "jest": "^27.0.4"
+  }
+}

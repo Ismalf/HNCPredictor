@@ -1,7 +1,87 @@
+html{
+    font-family: 'Courier New', Courier, monospace;
+}
+form{
+    margin: 0;
+}
 .root{
     width: 100%;
     height: 100%;
     display: grid;
     justify-items: center;
     align-items: center;
+}
+
+
+.card{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    box-shadow: 0 3px 8px 0 rgba(133, 133, 133, 0.212);
+    /* padding: 5px; */
+    margin: 10px;
+    width: 90%;
+    justify-content: space-evenly;
+    max-width: 400px;
+    min-width: 350px;
+    
+}
+.card *{
+    margin: 5%;
+}
+
+.card .cardHeader{
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.card .cardBody{
+    /* margin: 5%; */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 5%;
+    align-items: center;
+}
+
+.card .cardFooter{
+    /* margin: 5%; */
+    margin: auto 0;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn{
+    padding: 8px 16px;
+    min-width: 48px;
+    min-height: 16px;
+    background: transparent;
+    border: 0;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-primary{
+    border: 1px solid blue;
+    background-color: blue;
+    color: white;
+}
+
+.btn-secondary{
+    border: 1px solid rgb(183, 0, 255);
+    color: rgb(183, 0, 255);
+}
+
+.grow{
+    animation: grow 500ms ease-in forwards;
+}
+
+@keyframes grow {
+    0%{
+        height: 0px;
+    }
+    100%{
+        height: 30px;
+    }
 }

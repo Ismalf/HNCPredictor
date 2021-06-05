@@ -1,10 +1,8 @@
-html{
-    font-family: 'Courier New', Courier, monospace;
+html {
+    font-family: 'Roboto', sans-serif;
 }
-form{
-    margin: 0;
-}
-.root{
+
+.root {
     width: 100%;
     height: 100%;
     display: grid;
@@ -12,8 +10,7 @@ form{
     align-items: center;
 }
 
-
-.card{
+.card {
     display: flex;
     flex-direction: column;
     border: 1px solid #aaa;
@@ -25,34 +22,48 @@ form{
     justify-content: space-evenly;
     max-width: 400px;
     min-width: 350px;
-    
 }
-.card *{
+.card div {
     margin: 5%;
 }
 
-.card .cardHeader{
+.card .cardHeader {
     text-align: center;
     font-size: 1.2rem;
     font-weight: bold;
 }
 
-.card .cardBody{
+.card .cardBody {
     /* margin: 5%; */
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    column-gap: 5%;
+    grid-template-columns: 33% 65%;
+    column-gap: 2%;
     align-items: center;
 }
+.card .cardBody #results {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    display: none;
+    overflow: hidden;
+    margin: 5% 0;
+}
 
-.card .cardFooter{
-    /* margin: 5%; */
+.card .cardFooter {
+    margin: 5%;
     margin: auto 0;
     display: flex;
     justify-content: flex-end;
 }
 
-.btn{
+input[type="text"],
+input[type="datetime-local"] {
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    padding: 5px;
+    width: 100%;
+}
+
+.btn {
     padding: 8px 16px;
     min-width: 48px;
     min-height: 16px;
@@ -60,28 +71,45 @@ form{
     border: 0;
     border-radius: 5px;
     cursor: pointer;
+    margin: 2%;
 }
 
-.btn-primary{
+.btn-primary {
     border: 1px solid blue;
     background-color: blue;
     color: white;
 }
 
-.btn-secondary{
+.btn-secondary {
     border: 1px solid rgb(183, 0, 255);
     color: rgb(183, 0, 255);
 }
 
-.grow{
+/* ===========   ERRORS   =========== */
+
+.inputErr {
+    transition: 500ms;
+    border: 1px solid red!important;
+}
+/* ===========     OK     =========== */
+
+.inputOk {
+    transition: 500ms;
+    border: 1px solid rgb(0, 255, 13)!important;
+}
+
+/* =========== ANIMATIONS =========== */
+
+.grow {
+    display: inline!important;
     animation: grow 500ms ease-in forwards;
 }
 
 @keyframes grow {
-    0%{
+    0% {
         height: 0px;
     }
-    100%{
-        height: 30px;
+    100% {
+        height: 70px;
     }
 }

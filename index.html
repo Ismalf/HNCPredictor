@@ -2,28 +2,35 @@
 
 <head>
     <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <form action="">
-        <div class="root">
-            <div class="card">
-                <div class="cardHeader">Pico y Placa (Hoy no Circula) Predictor</div>
-                <div class="cardBody">
-                    <label for="plateNumber">Plate Number:</label>
-                    <input type="text" name="plateNumber" id="plateNumber" placeholder="XXX0000"
-                        pattern="[A-Z]{2,3}[0-9]{3,4}[A-Z]{0,1}" maxlength="7" oninput="this.value = this.value.replace(/[^a-zA-Z0-9]/,'')">
-                    <label for="circulationDateTime">Date:</label>
+    
+    <div class="root">
+        <div class="card">
+            <div class="cardHeader">Pico y Placa Predictor</div>
+            <div class="cardBody">
+                <label for="plateNumber">Licence Plate Number:</label>
+                <div>
+                    <input type="text" name="plateNumber" id="plateNumber" placeholder="AAA0000" maxlength="7"
+                    oninput="this.value = this.value.replace(/[^a-zA-Z0-9]/,'').toUpperCase()">
+                    <span id="plateNumberErr"></span>
+                </div>
+                <label for="circulationDateTime">Date:</label>
+                <div>
                     <input type="datetime-local" name="circulationDateTime" id="circulationDateTime">
-                    <div id="results"></div>
+                    <span id="circulationDateTime"></span>
                 </div>
-                <div class="cardFooter">
-                    <input type="button" value="Reset" class="btn btn-secondary">
-                    <input type="button" onclick="check()" value="Check permission" class="btn btn-primary">
-                </div>
+                <div id="results"></div>
+            </div>
+            <div class="cardFooter">
+                <input type="button" onclick="reset(false)" value="Reset" class="btn btn-secondary">
+                <input type="button" onclick="check()" value="Check permission" class="btn btn-primary">
             </div>
         </div>
-    </form>
+    </div>
     <script src="core.js"></script>
 </body>
 

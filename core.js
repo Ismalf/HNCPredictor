@@ -83,9 +83,9 @@ const getInputValues = () => {
 const inputHasErrors = (plate, date) => {
     let errs = 0
     let inputWErr = []
-    if (!plate || (!/^[A-Z]{3}[0-9]{4}$/.test(plateNumberInput.value) &&
-        !/^[A-Z]{2}[0-9]{3}[A-Z]{1}$/.test(plateNumberInput.value) &&
-        !/^[A-Z]{2}[0-9]{4}$/.test(plateNumberInput.value))) {
+    if (!plate || (!/^[A-Z]{3}[0-9]{4}$/.test(plate) &&
+        !/^[A-Z]{2}[0-9]{3}[A-Z]{1}$/.test(plate) &&
+        !/^[A-Z]{2}[0-9]{4}$/.test(plate))) {
         errs++
         inputWErr.push(plateNumberInput)
     }

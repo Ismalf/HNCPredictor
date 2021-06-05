@@ -1,13 +1,18 @@
 <html>
 
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Pico y Placa mobility restrictions predictor for the city of Quito Ecuador. Uses the previous restrictions time frames.">
+    <meta name="keywords" content="Pico y Placa, Quito, Ecuador, Restrictions, predictor">
+    <meta name="author" content="Ismael Martínez">
+    <title>Pico y Placa Predictor</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    
+
     <div class="root">
         <div class="card">
             <div class="cardHeader">Pico y Placa Predictor</div>
@@ -15,12 +20,13 @@
                 <label for="plateNumber">Licence Plate Number:</label>
                 <div>
                     <input type="text" name="plateNumber" id="plateNumber" placeholder="AAA0000" maxlength="7"
-                    oninput="this.value = this.value.replace(/[^a-zA-Z0-9]/,'').toUpperCase()" onblur="checkLNP()">
+                        oninput="this.value = this.value.replace(/[^a-zA-Z0-9]/,'').toUpperCase()" onblur="checkLNP()">
                     <span id="plateNumberErr" class="errmsg"></span>
                 </div>
                 <label for="circulationDateTime">Date:</label>
                 <div>
-                    <input type="datetime-local" name="circulationDateTime" id="circulationDateTime" onblur="checkDate()">
+                    <input type="datetime-local" name="circulationDateTime" id="circulationDateTime"
+                        onblur="checkDate()">
                     <span id="circulationDateTimeErr" class="errmsg"></span>
                 </div>
                 <div id="results"></div>

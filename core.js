@@ -23,8 +23,8 @@ const results = document.getElementById('results')
  */
 const check = () => {
     reset() // first clear all the values that are not required yet, such as the final prediction message
-    const { plateNumber, date } = getInputValues() 
-    const errs = inputHasErrors(plateNumber, date) 
+    const { plateNumber, date } = getInputValues()
+    const errs = inputHasErrors(plateNumber, date)
     // Values are validated as soon as the user triggers the blur event on an input field
     // But either way the prediction is aborted if there are still errors on the inputs
     if (errs.errs) {
@@ -33,7 +33,7 @@ const check = () => {
         return
     }
     const prediction = getPrediction(extractCharacteristics(plateNumber), date) // Get the prediction from the input data
-    
+
     showPrediction(prediction) // output the prediction to HTML
 }
 
@@ -45,10 +45,12 @@ const check = () => {
  * @param {*} message Custom error message for an input
  */
 const setState = (input = null, hasErrors = false, isReset = true, message = null) => {
-    if (isReset) {
+    if (isReset || !hasErrors) {
         input.classList.remove('inputOk')
         input.classList.remove('inputErr')
         input.value = ''
+        document.getElementById('plateNumberErr').innerHTML = ''
+        document.getElementById('circulationDateTimeErr').innerHTML = ''
     } else {
         if (hasErrors) {
             input.classList.remove('inputOk')
@@ -58,12 +60,7 @@ const setState = (input = null, hasErrors = false, isReset = true, message = nul
             } else {
                 document.getElementById('circulationDateTimeErr').innerHTML = message ?? 'Please enter a valid date'
             }
-        } else {
-            input.classList.remove('inputErr')
-            input.classList.add('inputOk')
-            document.getElementById('plateNumberErr').innerHTML = ''
-            document.getElementById('circulationDateTimeErr').innerHTML = ''
-        }
+        } 
     }
 }
 
@@ -86,7 +83,9 @@ const getInputValues = () => {
 const inputHasErrors = (plate, date) => {
     let errs = 0
     let inputWErr = []
-    if (!plate || !/^[A-Z]{2,3}[0-9]{3,4}[A-Z]{0,1}$/.test(plate)) {
+    if (!plate || (!/^[A-Z]{3}[0-9]{4}$/.test(plateNumberInput.value) &&
+        !/^[A-Z]{2}[0-9]{3}[A-Z]{1}$/.test(plateNumberInput.value) &&
+        !/^[A-Z]{2}[0-9]{4}$/.test(plateNumberInput.value))) {
         errs++
         inputWErr.push(plateNumberInput)
     }
@@ -103,7 +102,9 @@ const inputHasErrors = (plate, date) => {
 const checkLNP = () => {
     if (!plateNumberInput.value) {
         setState(plateNumberInput, true, false, 'Licence plate number is required')
-    } else if (!/^[A-Z]{2,3}[0-9]{3,4}[A-Z]{0,1}$/.test(plateNumberInput.value))
+    } else if (!/^[A-Z]{3}[0-9]{4}$/.test(plateNumberInput.value) && // cars
+        !/^[A-Z]{2}[0-9]{3}[A-Z]{1}$/.test(plateNumberInput.value) && // motorbikes
+        !/^[A-Z]{2}[0-9]{4}$/.test(plateNumberInput.value)) // diplomatic entities (CD) and temporal importation (TI) cars
         setState(plateNumberInput, true, false, 'Incorrect format for licence plate number')
     else
         setState(plateNumberInput, false, false)

@@ -45,23 +45,22 @@ const check = () => {
  * @param {*} message Custom error message for an input
  */
 const setState = (input = null, hasErrors = false, isReset = true, message = null) => {
-    if (isReset || !hasErrors) {
+    let errMsg = ''
+    if (isReset) {
         input.classList.remove('inputOk')
         input.classList.remove('inputErr')
         input.value = ''
-        document.getElementById('plateNumberErr').innerHTML = ''
-        document.getElementById('circulationDateTimeErr').innerHTML = ''
     } else {
         if (hasErrors) {
             input.classList.remove('inputOk')
             input.classList.add('inputErr')
-            if (input === plateNumberInput) {
-                document.getElementById('plateNumberErr').innerHTML = message ?? 'Please enter a valid licence plate number'
-            } else {
-                document.getElementById('circulationDateTimeErr').innerHTML = message ?? 'Please enter a valid date'
-            }
-        } 
+            errMsg = message ? message : input === plateNumberInput ? 'Please enter a valid licence plate number' : 'Please enter a valid date'
+        } else {
+            input.classList.remove('inputErr')
+            input.classList.add('inputOk')
+        }
     }
+    document.getElementById(input === plateNumberInput ? 'plateNumberErr' : 'circulationDateTimeErr').innerHTML = errMsg
 }
 
 /**

@@ -15,13 +15,13 @@
                 <label for="plateNumber">Licence Plate Number:</label>
                 <div>
                     <input type="text" name="plateNumber" id="plateNumber" placeholder="AAA0000" maxlength="7"
-                    oninput="this.value = this.value.replace(/[^a-zA-Z0-9]/,'').toUpperCase()">
-                    <span id="plateNumberErr"></span>
+                    oninput="this.value = this.value.replace(/[^a-zA-Z0-9]/,'').toUpperCase()" onblur="checkLNP()">
+                    <span id="plateNumberErr" class="errmsg"></span>
                 </div>
                 <label for="circulationDateTime">Date:</label>
                 <div>
-                    <input type="datetime-local" name="circulationDateTime" id="circulationDateTime">
-                    <span id="circulationDateTime"></span>
+                    <input type="datetime-local" name="circulationDateTime" id="circulationDateTime" onblur="checkDate()">
+                    <span id="circulationDateTimeErr" class="errmsg"></span>
                 </div>
                 <div id="results"></div>
             </div>

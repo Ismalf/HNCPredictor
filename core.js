@@ -21,7 +21,7 @@ const check = () => {
     showPrediction(prediction)
 }
 
-const setState = (input = null, hasErrors = false, isReset = true) => {
+const setState = (input = null, hasErrors = false, isReset = true, message = null) => {
     if (isReset) {
         input.classList.remove('inputOk')
         input.classList.remove('inputErr')
@@ -30,9 +30,16 @@ const setState = (input = null, hasErrors = false, isReset = true) => {
         if (hasErrors) {
             input.classList.remove('inputOk')
             input.classList.add('inputErr')
+            if (input === plateNumberInput) {
+                document.getElementById('plateNumberErr').innerHTML = message ?? 'Please enter a valid licence plate number'
+            } else {
+                document.getElementById('circulationDateTimeErr').innerHTML = message ?? 'Please enter a valid date'
+            }
         } else {
             input.classList.remove('inputErr')
             input.classList.add('inputOk')
+            document.getElementById('plateNumberErr').innerHTML = ''
+            document.getElementById('circulationDateTimeErr').innerHTML = ''
         }
     }
 }
@@ -54,8 +61,23 @@ const inputHasErrors = (plate, date) => {
         errs++
         inputWErr.push(circulationDateTimeInput)
     }
-    console.log(inputWErr)
     return { errs, inputWErr }
+}
+
+const checkLNP = () => {
+    if (!plateNumberInput.value) {
+        setState(plateNumberInput, true, false, 'Licence plate number is required')
+    } else if (!/^[A-Z]{2,3}[0-9]{3,4}[A-Z]{0,1}$/.test(plateNumberInput.value))
+        setState(plateNumberInput, true, false, 'Incorrect format for licence plate number')
+    else
+        setState(plateNumberInput, false, false, 'Incorrect format for licence plate number')
+}
+
+const checkDate = () => {
+    if (!circulationDateTimeInput.value)
+        setState(circulationDateTimeInput, true, false, 'A date is required')
+    else
+        setState(circulationDateTimeInput, false, false, 'A date is required')
 }
 
 const getPrediction = (characteristics, date) => {

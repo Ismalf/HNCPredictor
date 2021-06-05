@@ -1,5 +1,5 @@
 html {
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
 }
 
 .root {
@@ -46,6 +46,7 @@ html {
     display: none;
     overflow: hidden;
     margin: 5% 0;
+    line-height: 23px;
 }
 
 .card .cardFooter {
@@ -63,6 +64,11 @@ input[type="datetime-local"] {
     width: 100%;
 }
 
+input:focus {
+    outline: none;
+    border: 1px solid rgba(0, 0, 255, 0.459);
+}
+
 .btn {
     padding: 8px 16px;
     min-width: 48px;
@@ -72,6 +78,27 @@ input[type="datetime-local"] {
     border-radius: 5px;
     cursor: pointer;
     margin: 2%;
+    z-index: 2;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+}
+.btn:focus {
+    outline: none;
+    background-color: #501aff;
+    border: 1px solid #501aff;
+}
+.btn::after {
+    content: "";
+    opacity: 0;
+    transition: 500ms;
+    box-shadow: 0 3px 8px 0 rgba(65, 65, 65, 0.233);
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+}
+.btn:hover::after {
+    opacity: 1;
 }
 
 .btn-primary {
@@ -79,29 +106,46 @@ input[type="datetime-local"] {
     background-color: blue;
     color: white;
 }
+.btn-primary:hover {
+    border: 1px solid rgb(60, 60, 255);
+    background-color: rgb(60, 60, 255);
+}
 
 .btn-secondary {
     border: 1px solid rgb(183, 0, 255);
     color: rgb(183, 0, 255);
+    background-color: white;
 }
-
+.btn-secondary:focus {
+    border: 1px solid rgb(138, 0, 192);
+    color: rgb(183, 0, 255);
+    background-color: white;
+}
+.btn-secondary:hover {
+    background-color: rgb(183, 0, 255);
+    color: white;
+}
 /* ===========   ERRORS   =========== */
 
 .inputErr {
     transition: 500ms;
-    border: 1px solid red!important;
+    border: 1px solid red !important;
+}
+.errmsg {
+    font-size: 10px;
+    color: red;
 }
 /* ===========     OK     =========== */
 
 .inputOk {
     transition: 500ms;
-    border: 1px solid rgb(0, 255, 13)!important;
+    border: 1px solid rgb(0, 255, 13) !important;
 }
 
 /* =========== ANIMATIONS =========== */
 
 .grow {
-    display: inline!important;
+    display: inline !important;
     animation: grow 500ms ease-in forwards;
 }
 
